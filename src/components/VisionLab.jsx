@@ -91,21 +91,42 @@ export const VisionLab = () => {
                 </LabGuideModal>
             )}
             
-            <div className="bg-white p-4 rounded-lg shadow-md border-l-4 border-green-600">
+            <div className="bg-white p-4 rounded-lg shadow-md border-l-4 border-blue-600">
                 <div className="flex justify-between items-start mb-2">
                     <h3 className="font-bold text-lg flex items-center gap-2">
-                        <IconEye className="text-green-600"/> Module 1: Computer Vision
+                        <IconEye className="text-blue-600"/> Module 1: Computer Vision
                     </h3>
                     <button 
                         onClick={() => setShowGuide(true)}
-                        className="bg-green-100 hover:bg-green-200 text-green-800 text-sm font-bold py-1 px-3 rounded flex items-center gap-2 transition-colors"
+                        className="bg-blue-100 hover:bg-blue-200 text-blue-800 text-sm font-bold py-1 px-3 rounded flex items-center gap-2 transition-colors shadow-sm"
                     >
                         <IconBook className="w-4 h-4" /> Open Lab Guide
                     </button>
                 </div>
                 <p className="text-gray-600 text-sm mb-4">
-                    Simulate a "Log Scaler" app. Adjust the <strong>Confidence Threshold</strong> to see how the AI decides what is a log.
+                    Simulate a "Log Scaler" app. Adjust the <strong>Confidence Threshold</strong> to see how the AI decides what is a log. Each object has a confidence score—only objects scoring above your threshold are detected (shown with green boxes).
                 </p>
+                <div className="bg-blue-50 p-3 rounded-lg border border-blue-200 mb-4 text-xs">
+                    <div className="grid grid-cols-2 gap-4">
+                        <div>
+                            <strong className="text-blue-900">How It Works:</strong>
+                            <ul className="text-blue-800 mt-1 space-y-1 list-disc list-inside">
+                                <li>AI analyzes pixel colors, shapes, and patterns</li>
+                                <li>Assigns a confidence score (0-100%) to each object</li>
+                                <li>Your threshold filters detections</li>
+                                <li>Green boxes = detected objects</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <strong className="text-blue-900">Key Metrics:</strong>
+                            <ul className="text-blue-800 mt-1 space-y-1">
+                                <li><strong>Precision:</strong> Accuracy of detections (fewer false positives = higher precision)</li>
+                                <li><strong>Recall:</strong> Coverage of actual logs (finding more logs = higher recall)</li>
+                                <li><strong>Trade-off:</strong> Can't maximize both simultaneously</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
                 
                 <div className="flex items-center gap-4 mb-4">
                     <label className="font-bold text-sm whitespace-nowrap">AI Confidence:</label>
@@ -120,19 +141,37 @@ export const VisionLab = () => {
                 </div>
 
                 <div className="grid grid-cols-3 gap-2 text-center mb-2">
-                    <div className="bg-blue-50 p-2 rounded">
-                        <div className="text-xs text-blue-800">Actual Logs</div>
-                        <div className="font-bold text-xl">{stats.actualLogs}</div>
+                    <div className="bg-blue-50 p-2 rounded border border-blue-200">
+                        <div className="text-xs text-blue-800 font-semibold">Actual Logs</div>
+                        <div className="font-bold text-xl text-blue-900">{stats.actualLogs}</div>
+                        <div className="text-xs text-blue-600 mt-1">Ground Truth</div>
                     </div>
-                    <div className="bg-green-50 p-2 rounded">
-                        <div className="text-xs text-green-800">Correctly ID'd</div>
-                        <div className="font-bold text-xl">{stats.logsFound}</div>
+                    <div className="bg-green-50 p-2 rounded border border-green-200">
+                        <div className="text-xs text-green-800 font-semibold">Correctly ID'd</div>
+                        <div className="font-bold text-xl text-green-900">{stats.logsFound}</div>
+                        <div className="text-xs text-green-600 mt-1">
+                            Recall: {stats.actualLogs > 0 ? Math.round((stats.logsFound / stats.actualLogs) * 100) : 0}%
+                        </div>
                     </div>
-                    <div className="bg-red-50 p-2 rounded">
-                        <div className="text-xs text-red-800">False Positives</div>
+                    <div className="bg-red-50 p-2 rounded border border-red-200">
+                        <div className="text-xs text-red-800 font-semibold">False Positives</div>
                         <div className="font-bold text-xl text-red-600">{stats.falsePositives}</div>
+                        <div className="text-xs text-red-600 mt-1">
+                            Precision: {stats.logsFound + stats.falsePositives > 0 ? Math.round((stats.logsFound / (stats.logsFound + stats.falsePositives)) * 100) : 0}%
+                        </div>
                     </div>
                 </div>
+                {stats.logsFound + stats.falsePositives > 0 && (
+                    <div className="bg-gray-50 p-2 rounded text-xs text-gray-700 border border-gray-200">
+                        <strong>Performance Summary:</strong> The AI detected {stats.logsFound + stats.falsePositives} objects. 
+                        {stats.falsePositives > 0 ? (
+                            <span className="text-red-600"> {stats.falsePositives} are false positives (rocks misidentified as logs).</span>
+                        ) : (
+                            <span className="text-green-600"> No false positives detected!</span>
+                        )}
+                        {' '}Found {stats.logsFound} of {stats.actualLogs} actual logs ({stats.actualLogs > 0 ? Math.round((stats.logsFound / stats.actualLogs) * 100) : 0}% recall).
+                    </div>
+                )}
             </div>
             <div className="flex justify-center bg-gray-900 rounded-lg p-2 shadow-inner overflow-hidden relative">
                 <div className="absolute top-4 right-4 bg-black/50 text-white text-xs px-2 py-1 rounded pointer-events-none">

@@ -2,8 +2,8 @@ import { IconDatabase, IconEye, IconFire, IconScan } from './icons';
 
 export const IntroLab = ({ setTab }) => (
     <div className="space-y-8 animate-fade-in">
-        <div className="bg-white p-8 rounded-xl shadow-lg border-l-8 border-green-700">
-            <h2 className="text-3xl font-bold mb-4 text-green-900">Welcome to AI-Enhanced Forestry</h2>
+        <div className="bg-white p-8 rounded-xl shadow-lg border-l-8 border-blue-700">
+            <h2 className="text-3xl font-bold mb-4 text-slate-900">Welcome to AI-Enhanced Forestry</h2>
             <p className="text-xl text-gray-700 mb-6 leading-relaxed">
                 This interactive lab is designed for professional foresters. Our goal is not to make you a programmer, 
                 but to make you an <strong>Informed Operator</strong>.
@@ -39,16 +39,16 @@ export const IntroLab = ({ setTab }) => (
         </div>
 
         {/* AI Applications in Forestry */}
-        <div className="bg-gradient-to-br from-green-50 to-blue-50 p-6 rounded-xl shadow-md border border-green-200">
+        <div className="bg-gradient-to-br from-blue-50 to-slate-50 p-6 rounded-xl shadow-md border border-blue-200">
             <h3 className="font-bold text-2xl mb-4 text-gray-800 flex items-center gap-2">
-                <IconEye className="text-green-700" /> AI Applications in Modern Forestry
+                <IconEye className="text-blue-700" /> AI Applications in Modern Forestry
             </h3>
             <p className="text-gray-700 mb-4">
                 Artificial Intelligence is transforming forestry operations across the entire value chain. Here are real-world applications you'll encounter:
             </p>
             <div className="grid md:grid-cols-2 gap-4">
                 <div className="bg-white p-4 rounded-lg border border-gray-200">
-                    <h4 className="font-bold text-green-800 mb-2">📊 Inventory & Measurement</h4>
+                    <h4 className="font-bold text-blue-800 mb-2">📊 Inventory & Measurement</h4>
                     <ul className="text-sm text-gray-700 space-y-1 list-disc list-inside">
                         <li>Automated tree counting from drone imagery</li>
                         <li>Log scaling apps (e.g., Timbeter) for pile volume</li>
@@ -90,8 +90,8 @@ export const IntroLab = ({ setTab }) => (
         <div className="bg-white p-6 rounded-xl shadow-md border border-gray-200">
             <h3 className="font-bold text-2xl mb-4 text-gray-800 border-b pb-2">Key AI Concepts You'll Learn</h3>
             <div className="grid md:grid-cols-2 gap-4">
-                <div className="p-4 bg-green-50 rounded-lg border border-green-200">
-                    <h4 className="font-bold text-green-900 mb-2 flex items-center gap-2">
+                <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <h4 className="font-bold text-blue-900 mb-2 flex items-center gap-2">
                         <IconEye className="w-5 h-5" /> Computer Vision
                     </h4>
                     <p className="text-sm text-gray-700 mb-2">
@@ -154,14 +154,14 @@ export const IntroLab = ({ setTab }) => (
                 Each module includes hands-on simulations, real-world applications, and critical thinking exercises. Click any module to begin.
             </p>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <button onClick={() => setTab(1)} className="group p-5 bg-white hover:bg-green-50 rounded-xl border border-gray-200 hover:border-green-300 text-left transition-all shadow-sm hover:shadow-md">
-                    <div className="font-bold text-green-800 flex items-center gap-2 text-lg group-hover:text-green-900">
+                <button onClick={() => setTab(1)} className="group p-5 bg-white hover:bg-blue-50 rounded-xl border border-gray-200 hover:border-blue-300 text-left transition-all shadow-sm hover:shadow-md">
+                    <div className="font-bold text-blue-800 flex items-center gap-2 text-lg group-hover:text-blue-900">
                         <IconEye className="w-5 h-5"/> 1. Computer Vision
                     </div>
                     <div className="text-sm text-gray-600 mt-2">
                         Learn how AI "sees" the forest. Simulate a log scaling app and understand confidence thresholds, precision, and recall.
                     </div>
-                    <div className="text-xs text-green-700 mt-2 font-semibold">
+                    <div className="text-xs text-blue-700 mt-2 font-semibold">
                         Concepts: Confidence Thresholds • False Positives • Precision vs. Recall
                     </div>
                 </button>

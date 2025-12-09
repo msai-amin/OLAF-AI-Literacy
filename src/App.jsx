@@ -20,16 +20,16 @@ function App() {
     ];
 
     return (
-        <div className="min-h-screen bg-gray-50 pb-10">
-            <div className="bg-green-900 text-white p-6 shadow-lg">
+        <div className="min-h-screen pb-10">
+            <div className="bg-gradient-to-r from-slate-800 via-blue-900 to-slate-800 text-white p-6 shadow-xl border-b-4 border-blue-500">
                 <div className="max-w-5xl mx-auto flex justify-between items-center">
                     <div>
-                        <h1 className="text-2xl font-bold flex items-center gap-3">
-                            <IconTree className="text-green-300" /> Forestry AI Literacy Course
+                        <h1 className="text-3xl font-bold flex items-center gap-3">
+                            <IconTree className="text-blue-300" /> Forestry AI Literacy Course
                         </h1>
-                        <p className="text-green-200 opacity-80 mt-1 text-sm">Interactive Learning Labs v2.1</p>
+                        <p className="text-blue-200 opacity-90 mt-1 text-sm font-medium">Interactive Learning Labs v2.1</p>
                     </div>
-                    <button onClick={() => setActiveTab(0)} className="text-sm bg-green-800 hover:bg-green-700 px-3 py-1 rounded border border-green-600 transition-colors hidden sm:block">
+                    <button onClick={() => setActiveTab(0)} className="text-sm bg-blue-700 hover:bg-blue-600 px-4 py-2 rounded-lg border border-blue-500 transition-all shadow-md hover:shadow-lg hidden sm:block font-semibold">
                         Back to Home
                     </button>
                 </div>
@@ -37,15 +37,15 @@ function App() {
 
             <div className="max-w-5xl mx-auto mt-6 px-4">
                 {/* Navigation */}
-                <div className="flex flex-wrap gap-2 mb-6 border-b border-gray-200 pb-1 overflow-x-auto">
+                <div className="flex flex-wrap gap-2 mb-6 border-b-2 border-slate-200 pb-1 overflow-x-auto bg-white rounded-t-lg p-2 shadow-sm">
                     {tabs.map(tab => (
                         <button
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id)}
-                            className={`px-4 py-2 rounded-t-lg font-bold text-sm transition-all whitespace-nowrap ${
+                            className={`px-5 py-2.5 rounded-t-lg font-bold text-sm transition-all whitespace-nowrap ${
                                 activeTab === tab.id 
-                                ? 'bg-white text-green-900 border-t-4 border-green-600 shadow-sm translate-y-px' 
-                                : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+                                ? 'bg-gradient-to-b from-blue-50 to-white text-blue-900 border-t-4 border-blue-600 shadow-md translate-y-px' 
+                                : 'bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-800'
                             }`}
                         >
                             {tab.title}
@@ -54,7 +54,7 @@ function App() {
                 </div>
 
                 {/* Content Area */}
-                <div className="bg-white p-6 rounded-b-lg rounded-r-lg shadow-sm min-h-[500px]">
+                <div className="bg-white p-6 rounded-b-lg rounded-r-lg shadow-lg min-h-[500px] border border-slate-200">
                     {tabs[activeTab].component}
                 </div>
             </div>
