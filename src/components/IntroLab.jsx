@@ -1,4 +1,4 @@
-import { IconDatabase, IconEye, IconFire, IconScan } from './icons';
+import { IconDatabase, IconEye, IconFire, IconScan, IconBook } from './icons';
 
 export const IntroLab = ({ setTab }) => (
     <div className="space-y-8 animate-fade-in">
@@ -83,6 +83,15 @@ export const IntroLab = ({ setTab }) => (
                         <li>Canopy structure analysis</li>
                     </ul>
                 </div>
+                <div className="bg-white p-4 rounded-lg border border-gray-200">
+                    <h4 className="font-bold text-indigo-800 mb-2">🤖 Machine Learning Models</h4>
+                    <ul className="text-sm text-gray-700 space-y-1 list-disc list-inside">
+                        <li>Species classification (Random Forest)</li>
+                        <li>Volume prediction (Regression models)</li>
+                        <li>Pest risk assessment (Classification)</li>
+                        <li>Stand clustering (K-Means)</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -134,7 +143,7 @@ export const IntroLab = ({ setTab }) => (
                         <strong>Key Concept:</strong> If you train AI on bad data (e.g., labeling telephone poles as trees), it will make those mistakes in the field. Data quality is everyone's responsibility.
                     </p>
                 </div>
-                <div className="p-4 bg-purple-50 rounded-lg border border-purple-200 md:col-span-2">
+                <div className="p-4 bg-purple-50 rounded-lg border border-purple-200">
                     <h4 className="font-bold text-purple-900 mb-2 flex items-center gap-2">
                         <IconScan className="w-5 h-5" /> Semantic Segmentation
                     </h4>
@@ -143,6 +152,17 @@ export const IntroLab = ({ setTab }) => (
                     </p>
                     <p className="text-xs text-gray-600">
                         <strong>Key Concept:</strong> Raw LiDAR is just millions of X,Y,Z coordinates. AI analyzes elevation, density, and spatial relationships to label each point. This enables tree height measurement, terrain mapping, and volume calculations.
+                    </p>
+                </div>
+                <div className="p-4 bg-indigo-50 rounded-lg border border-indigo-200">
+                    <h4 className="font-bold text-indigo-900 mb-2 flex items-center gap-2">
+                        <IconDatabase className="w-5 h-5" /> Machine Learning
+                    </h4>
+                    <p className="text-sm text-gray-700 mb-2">
+                        Algorithms that learn patterns from data to make predictions or classifications without explicit programming.
+                    </p>
+                    <p className="text-xs text-gray-600">
+                        <strong>Key Concept:</strong> Models learn from examples (training data) to find patterns. Common algorithms include Decision Trees, Random Forests, Regression, and Clustering—each suited to different forestry problems.
                     </p>
                 </div>
             </div>
@@ -154,9 +174,21 @@ export const IntroLab = ({ setTab }) => (
                 Each module includes hands-on simulations, real-world applications, and critical thinking exercises. Click any module to begin.
             </p>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <button onClick={() => setTab(1)} className="group p-5 bg-white hover:bg-blue-50 rounded-xl border border-gray-200 hover:border-blue-300 text-left transition-all shadow-sm hover:shadow-md">
+                <button onClick={() => setTab(1)} className="group p-5 bg-white hover:bg-indigo-50 rounded-xl border border-gray-200 hover:border-indigo-300 text-left transition-all shadow-sm hover:shadow-md">
+                    <div className="font-bold text-indigo-800 flex items-center gap-2 text-lg group-hover:text-indigo-900">
+                        <IconDatabase className="w-5 h-5"/> 1. Machine Learning
+                    </div>
+                    <div className="text-sm text-gray-600 mt-2">
+                        Explore core ML algorithms: decision trees, regression, and clustering. Practice with interactive widgets and learn how models learn from data.
+                    </div>
+                    <div className="text-xs text-indigo-700 mt-2 font-semibold">
+                        Concepts: Supervised Learning • Decision Trees • Regression • Clustering • Model Training
+                    </div>
+                </button>
+
+                <button onClick={() => setTab(2)} className="group p-5 bg-white hover:bg-blue-50 rounded-xl border border-gray-200 hover:border-blue-300 text-left transition-all shadow-sm hover:shadow-md">
                     <div className="font-bold text-blue-800 flex items-center gap-2 text-lg group-hover:text-blue-900">
-                        <IconEye className="w-5 h-5"/> 1. Computer Vision
+                        <IconEye className="w-5 h-5"/> 2. Computer Vision
                     </div>
                     <div className="text-sm text-gray-600 mt-2">
                         Learn how AI "sees" the forest. Simulate a log scaling app and understand confidence thresholds, precision, and recall.
@@ -166,9 +198,9 @@ export const IntroLab = ({ setTab }) => (
                     </div>
                 </button>
 
-                <button onClick={() => setTab(2)} className="group p-5 bg-white hover:bg-red-50 rounded-xl border border-gray-200 hover:border-red-300 text-left transition-all shadow-sm hover:shadow-md">
+                <button onClick={() => setTab(3)} className="group p-5 bg-white hover:bg-red-50 rounded-xl border border-gray-200 hover:border-red-300 text-left transition-all shadow-sm hover:shadow-md">
                     <div className="font-bold text-red-800 flex items-center gap-2 text-lg group-hover:text-red-900">
-                        <IconFire className="w-5 h-5"/> 2. Prediction
+                        <IconFire className="w-5 h-5"/> 3. Prediction
                     </div>
                     <div className="text-sm text-gray-600 mt-2">
                         Use historical data to predict the future. Simulate fire spread with variables like wind, fuel moisture, and terrain.
@@ -178,9 +210,9 @@ export const IntroLab = ({ setTab }) => (
                     </div>
                 </button>
 
-                <button onClick={() => setTab(3)} className="group p-5 bg-white hover:bg-blue-50 rounded-xl border border-gray-200 hover:border-blue-300 text-left transition-all shadow-sm hover:shadow-md">
+                <button onClick={() => setTab(4)} className="group p-5 bg-white hover:bg-blue-50 rounded-xl border border-gray-200 hover:border-blue-300 text-left transition-all shadow-sm hover:shadow-md">
                     <div className="font-bold text-blue-800 flex items-center gap-2 text-lg group-hover:text-blue-900">
-                        <IconScan className="w-5 h-5"/> 3. Generative AI
+                        <IconScan className="w-5 h-5"/> 4. Generative AI
                     </div>
                     <div className="text-sm text-gray-600 mt-2">
                         The "Digital Clerk." Generate professional reports from field notes but learn to catch AI "hallucinations."
@@ -190,9 +222,9 @@ export const IntroLab = ({ setTab }) => (
                     </div>
                 </button>
 
-                <button onClick={() => setTab(4)} className="group p-5 bg-white hover:bg-yellow-50 rounded-xl border border-gray-200 hover:border-yellow-300 text-left transition-all shadow-sm hover:shadow-md">
+                <button onClick={() => setTab(5)} className="group p-5 bg-white hover:bg-yellow-50 rounded-xl border border-gray-200 hover:border-yellow-300 text-left transition-all shadow-sm hover:shadow-md">
                     <div className="font-bold text-yellow-800 flex items-center gap-2 text-lg group-hover:text-yellow-900">
-                        <IconDatabase className="w-5 h-5"/> 4. Data Quality
+                        <IconDatabase className="w-5 h-5"/> 5. Data Quality
                     </div>
                     <div className="text-sm text-gray-600 mt-2">
                         "Garbage In, Garbage Out." Train a model yourself and see why bad data ruins results. Learn data validation techniques.
@@ -202,15 +234,27 @@ export const IntroLab = ({ setTab }) => (
                     </div>
                 </button>
 
-                <button onClick={() => setTab(5)} className="group p-5 bg-white hover:bg-purple-50 rounded-xl border border-gray-200 hover:border-purple-300 text-left transition-all shadow-sm hover:shadow-md md:col-span-2 lg:col-span-1">
+                <button onClick={() => setTab(6)} className="group p-5 bg-white hover:bg-purple-50 rounded-xl border border-gray-200 hover:border-purple-300 text-left transition-all shadow-sm hover:shadow-md">
                     <div className="font-bold text-purple-800 flex items-center gap-2 text-lg group-hover:text-purple-900">
-                        <IconScan className="w-5 h-5"/> 5. 3D LiDAR
+                        <IconScan className="w-5 h-5"/> 6. 3D LiDAR
                     </div>
                     <div className="text-sm text-gray-600 mt-2">
                         Interactive 3D point cloud visualization. See how AI performs semantic segmentation to separate ground from vegetation.
                     </div>
                     <div className="text-xs text-purple-700 mt-2 font-semibold">
                         Concepts: Point Clouds • Semantic Segmentation • DTM Creation • Tree Height Measurement
+                    </div>
+                </button>
+
+                <button onClick={() => setTab(7)} className="group p-5 bg-white hover:bg-indigo-50 rounded-xl border-2 border-indigo-300 hover:border-indigo-400 text-left transition-all shadow-lg hover:shadow-xl">
+                    <div className="font-bold text-indigo-800 flex items-center gap-2 text-lg group-hover:text-indigo-900">
+                        <IconBook className="w-5 h-5"/> 7. Knowledge Assessment Quiz
+                    </div>
+                    <div className="text-sm text-gray-600 mt-2">
+                        Test your understanding with 30 multiple-choice questions covering all modules. Questions are randomized each time!
+                    </div>
+                    <div className="text-xs text-indigo-700 mt-2 font-semibold">
+                        Features: 5 Questions per Module • Instant Grading • Randomized Questions • Detailed Feedback
                     </div>
                 </button>
             </div>

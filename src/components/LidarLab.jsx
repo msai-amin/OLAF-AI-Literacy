@@ -156,7 +156,7 @@ export const LidarLab = () => {
     return (
         <div className="flex flex-col gap-4">
             {showGuide && (
-                <LabGuideModal title="Lab 5: 3D LiDAR Point Cloud Processing" onClose={() => setShowGuide(false)}>
+                <LabGuideModal title="Lab 6: 3D LiDAR Point Cloud Processing" onClose={() => setShowGuide(false)}>
                     <LidarGuideContent />
                 </LabGuideModal>
             )}
@@ -164,7 +164,7 @@ export const LidarLab = () => {
             <div className="bg-white p-4 rounded-lg shadow-md border-l-4 border-purple-600">
                 <div className="flex justify-between items-start mb-2">
                     <h3 className="font-bold text-lg flex items-center gap-2">
-                        <IconScan className="text-purple-600"/> Module 5: LiDAR 3D Scanning
+                        <IconScan className="text-purple-600"/> Module 6: LiDAR 3D Scanning
                     </h3>
                     <button 
                         onClick={() => setShowGuide(true)}

@@ -10,6 +10,7 @@ This application provides hands-on simulations and interactive modules covering:
 3. **Generative AI** - Report generation and detecting hallucinations
 4. **Data Quality** - Training models and understanding GIGO (Garbage In, Garbage Out)
 5. **3D LiDAR** - Point cloud visualization and semantic segmentation
+6. **Machine Learning** - Core ML algorithms with interactive widgets (decision trees, regression, clustering)
 
 ## Getting Started
 
@@ -58,6 +59,7 @@ npm run preview
 │   │   ├── GenAILab.jsx     # Generative AI report generator
 │   │   ├── DataLab.jsx      # Data quality training module
 │   │   ├── LidarLab.jsx     # 3D LiDAR point cloud visualization
+│   │   ├── MLLab.jsx        # Machine learning interactive widgets
 │   │   └── LabGuideModal.jsx # Reusable modal component
 │   ├── App.jsx              # Main application component
 │   ├── main.jsx             # React entry point

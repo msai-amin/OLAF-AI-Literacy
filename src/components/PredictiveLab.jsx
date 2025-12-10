@@ -135,7 +135,7 @@ export const PredictiveLab = () => {
     return (
         <div className="flex flex-col md:flex-row gap-6">
             {showGuide && (
-                <LabGuideModal title="Lab 2: The Crystal Ball" onClose={() => setShowGuide(false)}>
+                <LabGuideModal title="Lab 3: The Crystal Ball" onClose={() => setShowGuide(false)}>
                     <PredictionGuideContent />
                 </LabGuideModal>
             )}
@@ -144,7 +144,7 @@ export const PredictiveLab = () => {
                 <div>
                     <div className="flex justify-between items-start mb-2">
                         <h3 className="font-bold text-lg flex items-center gap-2">
-                            <IconFire className="text-red-600"/> Module 2: Prediction
+                            <IconFire className="text-red-600"/> Module 3: Prediction
                         </h3>
                         <button 
                             onClick={() => setShowGuide(true)}

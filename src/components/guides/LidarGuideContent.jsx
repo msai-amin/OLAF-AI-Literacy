@@ -18,6 +18,15 @@ export const LidarGuideContent = () => (
             The result is a <strong>"Point Cloud"</strong>—millions of individual points in 3D space, each with X, Y, Z coordinates. Raw LiDAR data is just points; it doesn't "know" what each point represents.
         </p>
 
+        <div className="mt-6 bg-indigo-50 p-5 rounded-lg border border-indigo-200 mb-6">
+            <h4 className="font-bold text-indigo-900 mb-3 text-base flex items-center gap-2">
+                <IconScan className="w-4 h-4"/> LiDAR Processing Tools & Resources
+            </h4>
+            <p className="text-sm text-indigo-800 mb-2">
+                <strong>Data to Science (D2S) Platform:</strong> The <a href="https://ps2.d2s.org/" target="_blank" rel="noopener noreferrer" className="text-indigo-600 underline hover:text-indigo-800">ps2.d2s.org</a> platform provides modular tools for data-driven innovation and research, including specialized resources for LiDAR data processing, analysis, and visualization. This platform supports forestry professionals and researchers in working with point cloud data, offering applications that facilitate the transformation of raw LiDAR measurements into actionable insights for forest management and analysis.
+            </p>
+        </div>
+
         <div className="mt-6 bg-blue-50 p-5 rounded-lg border border-blue-100">
             <h4 className="font-bold text-blue-900 mb-3 text-base flex items-center gap-2">
                 <IconScan className="w-4 h-4"/> Real-World Forestry Applications

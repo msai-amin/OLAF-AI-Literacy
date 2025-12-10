@@ -31,7 +31,7 @@ export const GenAILab = () => {
     return (
         <div className="flex flex-col gap-6">
             {showGuide && (
-                <LabGuideModal title="Lab 3: The Digital Clerk" onClose={() => setShowGuide(false)}>
+                <LabGuideModal title="Lab 4: The Digital Clerk" onClose={() => setShowGuide(false)}>
                     <GenAIGuideContent />
                 </LabGuideModal>
             )}
@@ -39,7 +39,7 @@ export const GenAILab = () => {
             <div className="bg-white p-4 rounded-lg shadow-md border-l-4 border-blue-600">
                 <div className="flex justify-between items-start mb-2">
                     <h3 className="font-bold text-lg flex items-center gap-2">
-                        <IconScan className="text-blue-600"/> Module 3: Generative AI
+                        <IconScan className="text-blue-600"/> Module 4: Generative AI
                     </h3>
                     <button 
                         onClick={() => setShowGuide(true)}

@@ -86,7 +86,7 @@ export const VisionLab = () => {
     return (
         <div className="flex flex-col gap-4">
             {showGuide && (
-                <LabGuideModal title="Lab 1: The Digital Eye" onClose={() => setShowGuide(false)}>
+                <LabGuideModal title="Lab 2: The Digital Eye" onClose={() => setShowGuide(false)}>
                     <VisionGuideContent />
                 </LabGuideModal>
             )}
@@ -94,7 +94,7 @@ export const VisionLab = () => {
             <div className="bg-white p-4 rounded-lg shadow-md border-l-4 border-blue-600">
                 <div className="flex justify-between items-start mb-2">
                     <h3 className="font-bold text-lg flex items-center gap-2">
-                        <IconEye className="text-blue-600"/> Module 1: Computer Vision
+                        <IconEye className="text-blue-600"/> Module 2: Computer Vision
                     </h3>
                     <button 
                         onClick={() => setShowGuide(true)}

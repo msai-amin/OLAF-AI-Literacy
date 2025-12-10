@@ -24,24 +24,45 @@ export const DataLab = () => {
     };
 
     const runTraining = () => {
-        let score = 0;
         let treesSelected = 0;
         let trashSelected = 0;
+        const totalTrees = samples.filter(s => s.correct).length;
 
         trainingSet.forEach(id => {
             const sample = samples.find(s => s.id === id);
             if(sample.correct) { 
-                score += 20; 
                 treesSelected++; 
             } else { 
-                score -= 30; 
                 trashSelected++; 
             }
         });
 
-        if(treesSelected < 3) score -= 20;
-        if(score < 0) score = 0;
-        if(score > 100) score = 100;
+        // Calculate score based on data quality
+        let score = 0;
+        
+        // Perfect selection: all trees selected, no trash = 100%
+        if (treesSelected === totalTrees && trashSelected === 0) {
+            score = 100;
+        }
+        // Good selection: all trees selected, but some trash included = 70-90%
+        else if (treesSelected === totalTrees && trashSelected > 0) {
+            score = Math.max(70, 90 - (trashSelected * 10)); // Each trash item reduces by 10%
+        }
+        // Partial selection: some trees missing, but no trash = 70-95%
+        // Reward clean data even if incomplete
+        else if (treesSelected < totalTrees && trashSelected === 0 && treesSelected > 0) {
+            const completeness = (treesSelected / totalTrees) * 100;
+            score = Math.max(70, completeness * 0.95); // High score for clean partial data
+        }
+        // Poor selection: missing trees AND including trash = 0-60%
+        else {
+            const completeness = (treesSelected / totalTrees) * 100;
+            const penalty = trashSelected * 30; // Heavy penalty for garbage
+            score = Math.max(0, completeness - penalty);
+        }
+
+        // Ensure score is between 0 and 100
+        score = Math.max(0, Math.min(100, Math.round(score)));
 
         setModelQuality(score);
         setStage('result');
@@ -50,7 +71,7 @@ export const DataLab = () => {
     return (
         <div className="max-w-4xl mx-auto">
             {showGuide && (
-                <LabGuideModal title="Lab 4: Garbage In, Garbage Out" onClose={() => setShowGuide(false)}>
+                <LabGuideModal title="Lab 5: Garbage In, Garbage Out" onClose={() => setShowGuide(false)}>
                     <DataQualityGuideContent />
                 </LabGuideModal>
             )}
@@ -58,7 +79,7 @@ export const DataLab = () => {
             <div className="bg-white p-4 rounded-lg shadow-md border-l-4 border-yellow-600 mb-6">
                 <div className="flex justify-between items-start mb-2">
                     <h3 className="font-bold text-lg flex items-center gap-2">
-                        <IconDatabase className="text-yellow-600"/> Module 4: Data Quality
+                        <IconDatabase className="text-yellow-600"/> Module 5: Data Quality
                     </h3>
                     <button 
                         onClick={() => setShowGuide(true)}
