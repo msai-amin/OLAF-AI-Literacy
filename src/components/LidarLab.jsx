@@ -103,11 +103,12 @@ export const LidarLab = () => {
         return () => {
             cancelAnimationFrame(frameId);
             window.removeEventListener('resize', handleResize);
-            if(currentMount && currentRenderer.domElement) {
+            if (currentMount && currentRenderer.domElement && currentMount.contains(currentRenderer.domElement)) {
                 currentMount.removeChild(currentRenderer.domElement);
             }
             geometry.dispose();
             material.dispose();
+            currentRenderer.dispose();
         };
     }, []);
 

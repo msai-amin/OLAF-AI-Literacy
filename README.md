@@ -48,39 +48,46 @@ npm run preview
 
 ## Project Structure
 
+- **Routing:** Path-based routes (`/`, `/ml`, `/vision`, `/prediction`, `/genai`, `/data-quality`, `/lidar`, `/quiz`, `/glossary`) via React Router. Labs are lazy-loaded except the home page.
+- **Progress:** Stored in `localStorage` under key `olaf-forestry-ai-progress`. Schema: `{ completedModules: string[], quizAttempts: { score: number, date: string }[], lastRoute?: string }`. See `src/context/ProgressContext.jsx`.
+- **Data:** Quiz questions live in `src/data/quizQuestions.js` (export `questionPools` and `selectRandomQuestions`).
+
 ```
 ├── src/
-│   ├── components/
-│   │   ├── icons/          # SVG icon components
-│   │   ├── guides/          # Lab guide content components
-│   │   ├── IntroLab.jsx     # Home/introduction module
-│   │   ├── VisionLab.jsx    # Computer vision simulator
-│   │   ├── PredictiveLab.jsx # Fire prediction simulator
-│   │   ├── GenAILab.jsx     # Generative AI report generator
-│   │   ├── DataLab.jsx      # Data quality training module
-│   │   ├── LidarLab.jsx     # 3D LiDAR point cloud visualization
-│   │   ├── MLLab.jsx        # Machine learning interactive widgets
-│   │   └── LabGuideModal.jsx # Reusable modal component
-│   ├── App.jsx              # Main application component
-│   ├── main.jsx             # React entry point
-│   └── index.css            # Global styles and Tailwind directives
-├── index.html               # HTML entry point
-├── package.json             # Dependencies and scripts
-├── vite.config.js           # Vite build configuration
-├── tailwind.config.js       # Tailwind CSS configuration
-└── postcss.config.js        # PostCSS configuration
+│   ├── components/         # Lab and UI components
+│   ├── context/            # ProgressContext (progress persistence)
+│   ├── data/               # quizQuestions.js
+│   ├── guides/             # Lab guide content
+│   ├── test/               # Vitest setup
+│   ├── utils/              # e.g. visionStats.js
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css
 ```
+
+## How to Add a New Lab
+
+1. Create a new component in `src/components/` (e.g. `NewLab.jsx`).
+2. In `App.jsx`, add a lazy import: `const NewLab = lazy(() => import('./components/NewLab').then(m => ({ default: m.NewLab })));`
+3. Add a route in `ROUTES` and a `<Route path="/new-lab" element={<ModuleLayout path="/new-lab"><NewLab /></ModuleLayout>} />` (or without ModuleLayout if it is not a module).
+4. Optionally add a link from `IntroLab.jsx` to `/new-lab`.
+
+## How to Add Quiz Questions
+
+Edit `src/data/quizQuestions.js`. Add entries to the appropriate key in `questionPools` (e.g. `ml`, `vision`, `prediction`, `genai`, `dataQuality`, `lidar`). Each question is `{ question: string, options: string[], correct: number, module: string }`. The quiz picks 5 questions per module at random.
 
 ## Technologies
 
 - **React 18** - UI framework
+- **React Router** - URL routing and shareable links
 - **Vite** - Build tool and dev server
 - **Tailwind CSS** - Utility-first CSS framework
 - **Three.js** - 3D graphics library for LiDAR visualization
+- **Vitest** - Unit tests
 
 ## Development
 
-The application uses Vite for fast development with Hot Module Replacement (HMR). Changes to components will automatically refresh in the browser.
+The application uses Vite for fast development with Hot Module Replacement (HMR). Run `npm run dev`, then open the URL shown. Run tests with `npm run test` or `npm run test:run`.
 
 ## License
 

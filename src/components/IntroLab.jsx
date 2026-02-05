@@ -1,7 +1,34 @@
+import { Link } from 'react-router-dom';
 import { IconDatabase, IconEye, IconFire, IconScan, IconBook } from './icons';
+import { useProgress } from '../context/ProgressContext';
 
-export const IntroLab = ({ setTab }) => (
+export const IntroLab = () => {
+    const { completedCount, moduleCount, lastRoute, bestQuizScore } = useProgress();
+
+    return (
     <div className="space-y-8 animate-fade-in">
+        {(completedCount > 0 || lastRoute || bestQuizScore != null) && (
+            <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 flex flex-wrap items-center gap-4">
+                {completedCount > 0 && (
+                    <span className="text-blue-900 font-semibold">
+                        Completed: {completedCount}/{moduleCount} modules
+                    </span>
+                )}
+                {lastRoute && lastRoute !== '/' && (
+                    <Link
+                        to={lastRoute}
+                        className="text-blue-700 font-bold underline hover:text-blue-900"
+                    >
+                        Resume
+                    </Link>
+                )}
+                {bestQuizScore != null && (
+                    <span className="text-blue-800 text-sm">
+                        Your best quiz score: {bestQuizScore}%
+                    </span>
+                )}
+            </div>
+        )}
         <div className="bg-white p-8 rounded-xl shadow-lg border-l-8 border-blue-700">
             <h2 className="text-3xl font-bold mb-4 text-slate-900">Welcome to AI-Enhanced Forestry</h2>
             <p className="text-xl text-gray-700 mb-6 leading-relaxed">
@@ -174,7 +201,7 @@ export const IntroLab = ({ setTab }) => (
                 Each module includes hands-on simulations, real-world applications, and critical thinking exercises. Click any module to begin.
             </p>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <button onClick={() => setTab(1)} className="group p-5 bg-white hover:bg-indigo-50 rounded-xl border border-gray-200 hover:border-indigo-300 text-left transition-all shadow-sm hover:shadow-md">
+                <Link to="/ml" className="group p-5 bg-white hover:bg-indigo-50 rounded-xl border border-gray-200 hover:border-indigo-300 text-left transition-all shadow-sm hover:shadow-md block">
                     <div className="font-bold text-indigo-800 flex items-center gap-2 text-lg group-hover:text-indigo-900">
                         <IconDatabase className="w-5 h-5"/> 1. Machine Learning
                     </div>
@@ -184,9 +211,9 @@ export const IntroLab = ({ setTab }) => (
                     <div className="text-xs text-indigo-700 mt-2 font-semibold">
                         Concepts: Supervised Learning • Decision Trees • Regression • Clustering • Model Training
                     </div>
-                </button>
+                </Link>
 
-                <button onClick={() => setTab(2)} className="group p-5 bg-white hover:bg-blue-50 rounded-xl border border-gray-200 hover:border-blue-300 text-left transition-all shadow-sm hover:shadow-md">
+                <Link to="/vision" className="group p-5 bg-white hover:bg-blue-50 rounded-xl border border-gray-200 hover:border-blue-300 text-left transition-all shadow-sm hover:shadow-md block">
                     <div className="font-bold text-blue-800 flex items-center gap-2 text-lg group-hover:text-blue-900">
                         <IconEye className="w-5 h-5"/> 2. Computer Vision
                     </div>
@@ -196,9 +223,9 @@ export const IntroLab = ({ setTab }) => (
                     <div className="text-xs text-blue-700 mt-2 font-semibold">
                         Concepts: Confidence Thresholds • False Positives • Precision vs. Recall
                     </div>
-                </button>
+                </Link>
 
-                <button onClick={() => setTab(3)} className="group p-5 bg-white hover:bg-red-50 rounded-xl border border-gray-200 hover:border-red-300 text-left transition-all shadow-sm hover:shadow-md">
+                <Link to="/prediction" className="group p-5 bg-white hover:bg-red-50 rounded-xl border border-gray-200 hover:border-red-300 text-left transition-all shadow-sm hover:shadow-md block">
                     <div className="font-bold text-red-800 flex items-center gap-2 text-lg group-hover:text-red-900">
                         <IconFire className="w-5 h-5"/> 3. Prediction
                     </div>
@@ -208,9 +235,9 @@ export const IntroLab = ({ setTab }) => (
                     <div className="text-xs text-red-700 mt-2 font-semibold">
                         Concepts: Predictive Analytics • Cellular Automata • Environmental Variables
                     </div>
-                </button>
+                </Link>
 
-                <button onClick={() => setTab(4)} className="group p-5 bg-white hover:bg-blue-50 rounded-xl border border-gray-200 hover:border-blue-300 text-left transition-all shadow-sm hover:shadow-md">
+                <Link to="/genai" className="group p-5 bg-white hover:bg-blue-50 rounded-xl border border-gray-200 hover:border-blue-300 text-left transition-all shadow-sm hover:shadow-md block">
                     <div className="font-bold text-blue-800 flex items-center gap-2 text-lg group-hover:text-blue-900">
                         <IconScan className="w-5 h-5"/> 4. Generative AI
                     </div>
@@ -220,9 +247,9 @@ export const IntroLab = ({ setTab }) => (
                     <div className="text-xs text-blue-700 mt-2 font-semibold">
                         Concepts: Text Generation • Hallucinations • Verification & Validation
                     </div>
-                </button>
+                </Link>
 
-                <button onClick={() => setTab(5)} className="group p-5 bg-white hover:bg-yellow-50 rounded-xl border border-gray-200 hover:border-yellow-300 text-left transition-all shadow-sm hover:shadow-md">
+                <Link to="/data-quality" className="group p-5 bg-white hover:bg-yellow-50 rounded-xl border border-gray-200 hover:border-yellow-300 text-left transition-all shadow-sm hover:shadow-md block">
                     <div className="font-bold text-yellow-800 flex items-center gap-2 text-lg group-hover:text-yellow-900">
                         <IconDatabase className="w-5 h-5"/> 5. Data Quality
                     </div>
@@ -232,9 +259,9 @@ export const IntroLab = ({ setTab }) => (
                     <div className="text-xs text-yellow-700 mt-2 font-semibold">
                         Concepts: GIGO • Training Data • Model Accuracy • Data Validation
                     </div>
-                </button>
+                </Link>
 
-                <button onClick={() => setTab(6)} className="group p-5 bg-white hover:bg-purple-50 rounded-xl border border-gray-200 hover:border-purple-300 text-left transition-all shadow-sm hover:shadow-md">
+                <Link to="/lidar" className="group p-5 bg-white hover:bg-purple-50 rounded-xl border border-gray-200 hover:border-purple-300 text-left transition-all shadow-sm hover:shadow-md block">
                     <div className="font-bold text-purple-800 flex items-center gap-2 text-lg group-hover:text-purple-900">
                         <IconScan className="w-5 h-5"/> 6. 3D LiDAR
                     </div>
@@ -244,9 +271,9 @@ export const IntroLab = ({ setTab }) => (
                     <div className="text-xs text-purple-700 mt-2 font-semibold">
                         Concepts: Point Clouds • Semantic Segmentation • DTM Creation • Tree Height Measurement
                     </div>
-                </button>
+                </Link>
 
-                <button onClick={() => setTab(7)} className="group p-5 bg-white hover:bg-indigo-50 rounded-xl border-2 border-indigo-300 hover:border-indigo-400 text-left transition-all shadow-lg hover:shadow-xl">
+                <Link to="/quiz" className="group p-5 bg-white hover:bg-indigo-50 rounded-xl border-2 border-indigo-300 hover:border-indigo-400 text-left transition-all shadow-lg hover:shadow-xl block">
                     <div className="font-bold text-indigo-800 flex items-center gap-2 text-lg group-hover:text-indigo-900">
                         <IconBook className="w-5 h-5"/> 7. Knowledge Assessment Quiz
                     </div>
@@ -256,9 +283,10 @@ export const IntroLab = ({ setTab }) => (
                     <div className="text-xs text-indigo-700 mt-2 font-semibold">
                         Features: 5 Questions per Module • Instant Grading • Randomized Questions • Detailed Feedback
                     </div>
-                </button>
+                </Link>
             </div>
         </div>
     </div>
-);
+    );
+};
 

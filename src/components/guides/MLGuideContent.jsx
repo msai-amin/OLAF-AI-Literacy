@@ -12,7 +12,7 @@ export const MLGuideContent = () => (
             <strong>Machine Learning (ML)</strong> is a subset of artificial intelligence where computers learn to make decisions or predictions by finding patterns in data, rather than being explicitly programmed with rules.
         </p>
         <p>
-            Traditional programming: <em>"If tree height > 20m and DBH > 40cm, classify as mature."</em> You write the rules.
+            Traditional programming: <em>{"If tree height > 20m and DBH > 40cm, classify as mature."}</em> You write the rules.
         </p>
         <p>
             Machine Learning: <em>"Here are 10,000 trees with their measurements and classifications. Find the patterns that distinguish mature from immature trees."</em> The computer learns the rules.

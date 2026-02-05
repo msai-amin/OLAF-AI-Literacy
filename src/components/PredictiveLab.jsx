@@ -153,9 +153,12 @@ export const PredictiveLab = () => {
                             <IconBook className="w-4 h-4" /> Open Lab Guide
                         </button>
                     </div>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-gray-600 mb-3">
                         <strong>Scenario:</strong> A fire has started in mixed terrain. As the Incident Commander, you must predict spread and dig containment lines.
                     </p>
+                    <div className="bg-yellow-50 border-l-4 border-yellow-500 p-3 rounded-lg text-xs text-yellow-800">
+                        <strong>⚠️ Educational Note:</strong> This is a <strong>simplified toy model</strong> designed to illustrate core concepts of predictive analytics and fire behavior. Real-world fire prediction models (like FARSITE, Prometheus, or FlamMap) use complex physics-based equations, weather data integration, and detailed fuel models. This simulation is simplified for learning purposes to demonstrate how environmental variables (wind, moisture, fuel type) affect fire spread patterns.
+                    </div>
                 </div>
 
                 {/* Fire Triangle Controls */}
@@ -179,12 +182,12 @@ export const PredictiveLab = () => {
 
                     <div className="flex gap-4">
                         <div className="flex-1">
-                            <label className="text-xs font-bold block">Wind Speed: {params.windSpeed}</label>
-                            <input type="range" min="0" max="10" value={params.windSpeed} onChange={e=>setParams({...params, windSpeed: parseInt(e.target.value)})} className="w-full h-1 bg-gray-300 rounded-lg appearance-none cursor-pointer mt-1"/>
+                            <label className="text-xs font-bold block text-gray-900">Wind Speed: {params.windSpeed}</label>
+                            <input type="range" min="0" max="10" value={params.windSpeed} onChange={e=>setParams({...params, windSpeed: parseInt(e.target.value)})} className="w-full h-2 bg-orange-200 rounded-lg appearance-none cursor-pointer slider-thumb mt-1"/>
                         </div>
                         <div className="flex-1">
-                            <label className="text-xs font-bold block">Fuel Moisture: {params.moisture}%</label>
-                            <input type="range" min="0" max="50" value={params.moisture} onChange={e=>setParams({...params, moisture: parseInt(e.target.value)})} className="w-full h-1 bg-blue-200 rounded-lg appearance-none cursor-pointer mt-1"/>
+                            <label className="text-xs font-bold block text-gray-900">Fuel Moisture: {params.moisture}%</label>
+                            <input type="range" min="0" max="50" value={params.moisture} onChange={e=>setParams({...params, moisture: parseInt(e.target.value)})} className="w-full h-2 bg-cyan-200 rounded-lg appearance-none cursor-pointer slider-thumb mt-1"/>
                         </div>
                     </div>
                 </div>

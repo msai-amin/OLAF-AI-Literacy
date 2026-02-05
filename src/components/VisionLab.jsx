@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { IconEye, IconBook } from './icons';
 import { LabGuideModal } from './LabGuideModal';
 import { VisionGuideContent } from './guides/VisionGuideContent';
+import { computeVisionStats } from '../utils/visionStats';
 
 export const VisionLab = () => {
     const canvasRef = useRef(null);
@@ -12,22 +13,24 @@ export const VisionLab = () => {
 
     useEffect(() => {
         const newObjects = [];
+        // Logs: scores distributed across a wider range (0.3 to 1.0) so recall can vary with threshold
         for(let i=0; i<15; i++) {
             newObjects.push({
                 x: Math.random() * 500 + 50,
                 y: Math.random() * 300 + 50,
                 r: Math.random() * 15 + 10,
                 type: 'log',
-                score: Math.random() * 0.3 + 0.7 
+                score: Math.random() * 0.7 + 0.3  // Range: 0.3 to 1.0
             });
         }
+        // Rocks: scores also distributed but generally lower, with some overlap
         for(let i=0; i<20; i++) {
             newObjects.push({
                 x: Math.random() * 500 + 50,
                 y: Math.random() * 300 + 50,
                 r: Math.random() * 10 + 5,
                 type: 'rock',
-                score: Math.random() * 0.6 
+                score: Math.random() * 0.65  // Range: 0 to 0.65 (overlaps with logs in 0.3-0.65 range)
             });
         }
         setObjects(newObjects);
@@ -41,13 +44,11 @@ export const VisionLab = () => {
         ctx.fillStyle = '#3f3f3f'; 
         ctx.fillRect(0,0, 600, 400);
 
-        let found = 0;
-        let fps = 0;
-        let actual = 0;
+        const nextStats = computeVisionStats(objects, threshold);
+        setStats(nextStats);
 
         objects.forEach(obj => {
             if(obj.type === 'log') {
-                actual++;
                 ctx.beginPath();
                 ctx.arc(obj.x, obj.y, obj.r, 0, 2*Math.PI);
                 ctx.fillStyle = '#d4a373'; 
@@ -74,12 +75,8 @@ export const VisionLab = () => {
                 ctx.fillStyle = '#00ff00';
                 ctx.font = '10px monospace';
                 ctx.fillText(`LOG ${(obj.score*100).toFixed(0)}%`, obj.x - obj.r, obj.y - obj.r - 4);
-                if(obj.type === 'log') found++;
-                else fps++;
             }
         });
-
-        setStats({ logsFound: found, falsePositives: fps, actualLogs: actual });
 
     }, [threshold, objects]);
 
@@ -129,18 +126,26 @@ export const VisionLab = () => {
                 </div>
                 
                 <div className="flex items-center gap-4 mb-4">
-                    <label className="font-bold text-sm whitespace-nowrap">AI Confidence:</label>
+                    <label id="confidence-threshold-label" htmlFor="confidence-threshold" className="font-bold text-sm whitespace-nowrap">
+                        AI Confidence:
+                    </label>
                     <input 
+                        id="confidence-threshold"
                         type="range" 
                         min="1" max="99" 
                         value={threshold} 
                         onChange={(e) => setThreshold(e.target.value)}
+                        aria-valuemin={1}
+                        aria-valuemax={99}
+                        aria-valuenow={threshold}
+                        aria-valuetext={`${threshold} percent`}
+                        aria-labelledby="confidence-threshold-label"
                         className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
                     />
-                    <span className="w-12 text-center font-mono font-bold bg-gray-100 p-1 rounded">{threshold}%</span>
+                    <span className="w-12 text-center font-mono font-bold bg-gray-100 p-1 rounded" aria-hidden="true">{threshold}%</span>
                 </div>
 
-                <div className="grid grid-cols-3 gap-2 text-center mb-2">
+                <div className="grid grid-cols-3 gap-2 text-center mb-2" role="status" aria-live="polite" aria-atomic="true">
                     <div className="bg-blue-50 p-2 rounded border border-blue-200">
                         <div className="text-xs text-blue-800 font-semibold">Actual Logs</div>
                         <div className="font-bold text-xl text-blue-900">{stats.actualLogs}</div>
