@@ -1,0 +1,13 @@
+{
+  "routes": [
+    { "path": "/", "title": "Home", "isModule": false },
+    { "path": "/ml", "title": "1. ML", "isModule": true },
+    { "path": "/vision", "title": "2. Vision", "isModule": true },
+    { "path": "/prediction", "title": "3. Prediction", "isModule": true },
+    { "path": "/genai", "title": "4. GenAI", "isModule": true },
+    { "path": "/data-quality", "title": "5. Data Quality", "isModule": true },
+    { "path": "/lidar", "title": "6. LiDAR", "isModule": true },
+    { "path": "/quiz", "title": "Quiz", "isModule": false },
+    { "path": "/glossary", "title": "Glossary", "isModule": false }
+  ]
+}
